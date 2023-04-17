@@ -5,7 +5,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./common/material.module";
+import {RouterModule, Routes} from "@angular/router";
 
+const routes: Routes = [
+  {path: 'demo', loadChildren: ()=>import('./demo/demo.module').then(m=>m.DemoModule)},
+  {path: '**', redirectTo:'demo'}
+]
 @NgModule({
   declarations: [
     AppComponent
@@ -14,6 +19,7 @@ import {MaterialModule} from "./common/material.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     MaterialModule
   ],
   providers: [],
